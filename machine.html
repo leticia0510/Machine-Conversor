@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        body{ 
+            color: #44F24F;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0D0D0D;
+        }
+        main{
+            margin: 90px 0;
+            padding: 20px;
+            text-align: center;
+        }
+        select{
+            border: 1px solid #12732A;
+            font: 600 20px 'Courier New', Courier, monospace;
+            color: #44F24F;
+            margin: 10px 0;
+            background-color: #0D0D0D;
+            outline: transparent;
+        }
+        textarea{
+            resize: none;
+            outline: transparent;
+            background-color: #01260A;
+            color: #44F24F;
+        }
+        #textarea_caixa1,
+        #textarea_resultadoCovertor{
+            font: 600 16px 'Courier New', Courier, monospace;
+            border: 1px solid #36BF4A;
+            width: 310px;
+            height: 120px;
+            padding: 10px;
+            flex-wrap: wrap;
+        }
+        .div_entradaSaida{
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .div_converter{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .div_parte{
+            display: flex;
+            flex-direction: column;
+            margin: 0 30px;
+        }
+        .div_calculadora{
+            display: none;
+        }
+        button{
+            font: 600 16px 'Courier New', Courier, monospace;
+            cursor: pointer;
+            padding: 10px 50px;
+            border: 1px solid #36BF4A;
+            color: #36BF4A;
+            background-color: #0D0D0D;
+            margin-top: 30px;
+        }
+        button:hover{
+            color: #0D0D0D;
+            background-color: #36BF4A;
+            transition: step-start 0.2s;
+        }
+        .div_info{
+            color: #44F24F;
+            background-color: #0D0D0D;
+            padding: 10px;
+            text-align: center;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <h1>SPTecher Machine</h1>
+        <div class="div_converter">
+            <div class="div_entradaSaida">
+                <div class="div_parte">
+                    <select id="select_bases">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binário</option>
+                        <option value="8">Octal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                    <textarea id="textarea_caixa1"></textarea>
+                </div>
+                <div class="div_parte">
+                    <select id="select_basesResultado">
+                        <option value="10">Decimal</option>
+                        <option value="2">Binário</option>
+                        <option value="8">Octal</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                    <textarea id="textarea_resultadoCovertor" disabled></textarea>
+                </div>
+            </div>
+            <button onclick="converter()">Converter</button>
+        </div>
+    
+        <div class="div_calculadora">
+            <textarea name="" id="ipt_decimal"></textarea>
+            <select id="select_operadores">
+                <option value="+">+</option>
+                <option value="*">x</option>
+                <option value="-">-</option>
+                <option value="/">/</option>
+            </select>
+            <textarea name="" id=""></textarea>
+            <span>=</span>
+            <div id="div_resultado"></div>
+        </div>
+    </main>
+    <div class="div_info">
+        <p>Projeto desenvolvido pela Letícia da Silva Santos<br>Arquitetura Computacional</p>
+    </div>
+</body>
+</html>
+<script>
+    function converter(){
+        var bases = Number(select_bases.value);
+        var caixa1 = textarea_caixa1.value;
+        var basesResultado = Number(select_basesResultado.value);
+
+        var valorDecimal = parseInt(caixa1, bases);
+        var resultado = valorDecimal.toString(basesResultado).toUpperCase();
+
+        if(isNaN(valorDecimal)){
+            alert('Números ou Letras inválidos');
+        }else{
+            textarea_resultadoCovertor.innerHTML = '';
+            textarea_resultadoCovertor.innerHTML = resultado;
+        }
+    }
+</script>
